@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="cn.itcast.phonesafe"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- //获取准确GPS坐标的权限 -->
+    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />  //允许模拟器模拟位置坐标的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- //获取粗略坐标的权限(网络定位时使用) -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/abcd"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.HomeActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
+        <activity android:name=".activity.Setup1Activity"/>
+        <activity android:name=".activity.Setup2Activity"/>
+        <activity android:name=".activity.Setup3Activity"/>
+        <activity android:name=".activity.Setup4Activity"/>
+        <activity android:name=".activity.SetupOverActivity"/>
+        <activity android:name=".activity.ContactActivity"/>
+        <activity android:name=".activity.AToolActivity"/>
+        <activity android:name=".activity.QueryAddressActivity"/>
+        <activity android:name=".activity.ToastLocationActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+        <activity android:name=".activity.BlankPhoneActivity"/>
+        <receiver
+            android:name="cn.itcast.phonesafe.receiver.BootReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.SmsReceiver">
+            <intent-filter>
+                <!-- 为了去关联系统短信的广播对应过滤条件,先将编译版本改为4.1.2 -->
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.LocationService"/>
+        <service android:name=".service.AddressService"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+    </application>
+
+</manifest>
